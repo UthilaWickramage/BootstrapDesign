@@ -3,7 +3,7 @@
 
 name: Node.js CI
 
-on: [ "main" ]
+on: push
 
 name: 🚀 Deploy website on push
 jobs:
