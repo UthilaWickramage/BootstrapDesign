@@ -1,19 +1,19 @@
+name: Deploy to GitHub Pages
 
-
-name: Bootstrap Design
-
-on: push
+on:
+  push:
+    branches:
+      - main  # or your default branch
 
 jobs:
-  web-deploy:
-    name: 🎉 deploy
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-          - name: 🚚 Get latest code
-            uses: actions/checkout@v4
-          - name: Deploy with gh-pages
-            run: |
-              git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-              npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
-            env:
-                GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.MY_GITHUB_TOKEN }}
